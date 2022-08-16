@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imooc.project.mapper.ResourceMapper">
+
+    <!--查询当前登陆人的资源-->
+    <select id="listResource" resultType="com.imooc.project.vo.ResourceVO">
+        select re.resource_id, re.resource_name, re.url
+        from project.resource re
+                 inner join project.role_resource rr
+                            on re.resource_id = rr.resource_id
+            ${ew.customSqlSegment}
+    </select>
+
+
+    <select id="listResourceById" resultType="com.imooc.project.vo.TreeVO">
+        select re.resource_id id, re.resource_name title, if(rr.resource_id is null, false, true) checked
+        from project.resource re
+                 left join project.role_resource rr/*左链接是把左表的数据全部显示出来，右表的数据只显示匹配的*/
+                           on re.resource_id = rr.resource_id and rr.role_id = #{roleId}
+                               ${ew.customSqlSegment}
+    </select>
+</mapper>

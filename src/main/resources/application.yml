@@ -1,0 +1,29 @@
+spring:
+  # jdbc datasource
+  datasource:
+    # 使用druid数据源，引用druid依赖
+    type: com.alibaba.druid.pool.DruidDataSource
+    # JDBC数据库驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # mysql连接字符串
+    url: jdbc:mysql://127.0.0.1:3306/project?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+  thymeleaf:
+    cache: false
+
+#mp
+mybatis-plus:
+  global-config:
+    db-config:
+      #根据数据库主键自增
+      id-type: auto
+  #mp映射文件mapper的位置
+  mapper-locations: classpath:mapper/project/*Mapper.xml
+  #实体类别名
+  type-aliases-package: com.imooc.project.entity
+
+#log
+logging:
+  level:
+    com.imooc.project.dao: trace

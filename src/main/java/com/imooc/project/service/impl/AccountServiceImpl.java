@@ -1,0 +1,56 @@
+package com.imooc.project.service.impl;
+
+import cn.hutool.crypto.digest.MD5;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.imooc.project.dto.LoginDTO;
+import com.imooc.project.entity.Account;
+import com.imooc.project.mapper.AccountMapper;
+import com.imooc.project.service.AccountService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
+
+/**
+ * <p>
+ * 账号表 服务实现类
+ * </p>
+ *
+ * @author shanshan
+ * @since 2022-08-03
+ */
+@Service
+public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> implements AccountService {
+
+    @Override
+    public LoginDTO login(String username, String password) {
+        LoginDTO loginDTO = new LoginDTO();
+        loginDTO.setPath("redirect:/");
+        Account account = lambdaQuery().eq(Account::getUsername, username).one();
+        if (account == null) {
+            loginDTO.setError("用户名不存在");
+            return loginDTO;
+        }
+
+
+        MD5 md5 = new MD5(account.getSalt().getBytes());
+        String s = md5.digestHex(password);
+        if (!s.equals(account.getPassword())) {
+            loginDTO.setError("密码错误");
+            return loginDTO;
+        }
+        loginDTO.setAccount(account);
+        loginDTO.setPath("login/main");
+        return loginDTO;
+    }
+
+    @Override
+    public IPage<Account> accountPage(Page<Account> page, QueryWrapper<Account> wrapper) {
+        return baseMapper.accountPage(page, wrapper);
+    }
+
+    @Override
+    public Account getAccountById(Long id) {
+        return baseMapper.selectAccountById(id);
+    }
+}
