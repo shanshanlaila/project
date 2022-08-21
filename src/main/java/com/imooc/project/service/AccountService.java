@@ -18,7 +18,7 @@ import org.apache.ibatis.annotations.Param;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface AccountService extends IService<Account> {
+public interface AccountService extends MyService<Account> {
 
 
     /**

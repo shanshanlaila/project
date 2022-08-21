@@ -15,7 +15,7 @@ import java.util.List;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface ResourceService extends IService<Resource> {
+public interface ResourceService extends MyService<Resource> {
 
     List<ResourceVO> listResourceByRoleId(Long roleId);
 
@@ -24,5 +24,5 @@ public interface ResourceService extends IService<Resource> {
      *
      * @return
      */
-    List<TreeVO> listResource(Long roleId);
+    List<TreeVO> listResource(Long roleId,Integer flag);
 }

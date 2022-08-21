@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface RoleResourceService extends IService<RoleResource> {
+public interface RoleResourceService extends MyService<RoleResource> {
 
 }
