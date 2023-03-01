@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.imooc.project.entity.Account;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.imooc.project.entity.Resource;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -18,7 +17,6 @@ import org.apache.ibatis.annotations.Param;
  * @author shanshan
  * @since 2022-08-03
  */
-@Mapper
 public interface AccountMapper extends BaseMapper<Account> {
 
 
@@ -37,4 +35,5 @@ public interface AccountMapper extends BaseMapper<Account> {
      * @return
      */
     Account selectAccountById(Long id);
+
 }

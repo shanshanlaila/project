@@ -54,8 +54,14 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
         return resourceVOS;
     }
 
+    /**
+     * 查询系统资源，供前端组件渲染
+     * @param roleId
+     * @param flag
+     * @return
+     */
     @Override
-    public List<TreeVO> listResource(Long roleId) {
+    public List<TreeVO> listResource(Long roleId,Integer flag) {
         if (roleId == null) {
             //新增角色所用
             LambdaQueryWrapper<Resource> wrapper = Wrappers.<Resource>lambdaQuery()
@@ -89,13 +95,13 @@ public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> i
         } else {
             //修改角色所用
             QueryWrapper<Resource> query = Wrappers.query();
-            query.isNull("re.parent_id").orderByAsc("re.sort");
+            query.eq(flag==1,"rr.role_id",roleId).isNull("re.parent_id").orderByAsc("re.sort");
             List<TreeVO> treeVOS = baseMapper.listResourceById(query, roleId);
             treeVOS.forEach(t -> {
                 t.setChecked(false);
                 Long id = t.getId();
                 QueryWrapper<Resource> subQuery = Wrappers.<Resource>query();
-                subQuery.eq("re.parent_id", id).orderByAsc("re.sort");
+                subQuery.eq(flag==1,"rr.role_id",roleId).eq("re.parent_id", id).orderByAsc("re.sort");
 
                 List<TreeVO> children = baseMapper.listResourceById(subQuery, roleId);
                 if (CollectionUtils.isNotEmpty(children)) {

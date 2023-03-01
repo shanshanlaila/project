@@ -8,7 +8,7 @@ spring:
     # mysql连接字符串
     url: jdbc:mysql://127.0.0.1:3306/project?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: 123456
+    password: 12345678
   thymeleaf:
     cache: false
 

@@ -24,5 +24,5 @@ public interface ResourceService extends MyService<Resource> {
      *
      * @return
      */
-    List<TreeVO> listResource(Long roleId);
+    List<TreeVO> listResource(Long roleId,Integer flag);
 }

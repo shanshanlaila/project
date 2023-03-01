@@ -1,6 +1,6 @@
-var table = layui.table;
+const table = layui.table;
 // 第一个实例
-var tableIns = table.render({
+const tableIns = table.render({
     id: 'test',
     elem: '#roleList'
     , url: '/role/list'
@@ -25,7 +25,7 @@ var tableIns = table.render({
 function query() {
     tableIns.reload({
         where: {
-            roleName: $("#roleName").val(),
+            like$role_name: $("#roleName").val(),
         }, page: {
             curr: 1
         }
@@ -46,20 +46,22 @@ function intoAdd() {
 
 //单元格工具事件
 table.on('tool(test)', function (obj) { // 注：test 是 table 原始标签的属性 lay-filter="对应的值"
-    var data = obj.data; //获得当前行数据
-    var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-    var tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
+    const data = obj.data; //获得当前行数据
+    const layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+    const tr = obj.tr; //获得当前行 tr 的 DOM 对象（如果有的话）
 
     let roleId = data.roleId;
 
     if (layEvent === 'detail') { //查看
-        //do somehing
+        //do something
         openLayer('/role/toDetail/' + roleId, '角色详情');
+
+        showTree('/role/listResource/' + roleId+'/1', 'resource',false);
     } else if (layEvent === 'del') { //删除
         layer.confirm('确定删除吗？', function (index) {
             // 关闭确认框
             layer.close(index);
-
+            console.log(roleId)
             myDelete('/role/' + roleId);
 
         });
@@ -67,14 +69,17 @@ table.on('tool(test)', function (obj) { // 注：test 是 table 原始标签的�
         //弹窗
         openLayer('/role/toUpdate/' + roleId, '修改角色');
 
-        showTree('/role/listResource/' + roleId, 'resource');
+        showTree('/role/listResource/' + roleId+'/0', 'resource');
         //提交表单
         mySubmit('updateSubmit', 'PUT', addIds);
 
     }
 });
 
-function showTree(url, id) {
+function showTree(url, id,showCheckbox) {
+    if (typeof (showCheckbox)==='undefined'){
+        showCheckbox=true;
+    }
     $.ajax({
         url: url,
         async: false,
@@ -93,7 +98,7 @@ function showTree(url, id) {
     })
 }
 
-var addIds = function (field) {
+const addIds = function (field) {
     let checked = layui.tree.getChecked('resource');
     field.resourceIds = getIds(checked, []);
 }

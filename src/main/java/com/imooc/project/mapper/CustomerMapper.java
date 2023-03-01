@@ -1,8 +1,7 @@
 package com.imooc.project.mapper;
 
 import com.imooc.project.entity.Customer;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -12,7 +11,6 @@ import org.apache.ibatis.annotations.Param;
  * @author shanshan
  * @since 2022-08-03
  */
-@Mapper
-public interface CustomerMapper extends MyMapper<Customer> {
-    Customer selectByRealName(@Param("realName") String name);
+public interface CustomerMapper extends BaseMapper<Customer> {
+
 }

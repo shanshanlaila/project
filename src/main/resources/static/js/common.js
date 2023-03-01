@@ -20,6 +20,7 @@ function openLayer(url, title) {
  * 封装提交表达方法
  * @param filter
  * @param type
+ * @param func
  */
 function mySubmit(filter, type, func) {
     layui.form.on('submit(' + filter + ')', function (data) {

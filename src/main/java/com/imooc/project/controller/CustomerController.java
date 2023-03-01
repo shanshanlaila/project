@@ -8,6 +8,8 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.imooc.project.entity.Customer;
 import com.imooc.project.service.CustomerService;
+import com.imooc.project.util.MyQuery;
+import com.imooc.project.util.QueryUtil;
 import com.imooc.project.util.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -48,21 +50,15 @@ public class CustomerController {
     /**
      * 查询方法
      *
-     * @param realName
-     * @param phone
-     * @param page
-     * @param limit
+     * @param param
      * @return
      */
     @GetMapping("list")
     @ResponseBody
-    public R<Map<String, Object>> list(String realName, String phone, Long page, Long limit) {//page和limit是layui组件传过来的
-        LambdaQueryWrapper<Customer> queryWrapper = Wrappers.<Customer>lambdaQuery()
-                .like(StringUtils.isNotBlank(realName), Customer::getRealName, realName)
-                .like(StringUtils.isNotBlank(phone), Customer::getPhone, phone)
-                .orderByDesc(Customer::getCustomerId);
+    public R<Map<String, Object>> list(@RequestParam Map<String,String>param) {//page和limit是layui组件传过来的
+        MyQuery<Customer> myQuery = QueryUtil.buildMyQuery(param);
 
-        Page<Customer> myPage = customerService.page(new Page<>(page, limit), queryWrapper);
+        Page<Customer> myPage = customerService.page(myQuery.getPage(), myQuery.getWrapper().orderByDesc("customer_id"));
 
         return ResultUtil.buildPageR(myPage);
     }

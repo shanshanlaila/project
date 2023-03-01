@@ -49,7 +49,6 @@ public class AccountController {
     /**
      * 进入列表页
      *
-     * @return
      */
     @GetMapping("toList")
     public String toList() {
@@ -60,8 +59,6 @@ public class AccountController {
     /**
      * 查询方法
      *
-     * @param query
-     * @return
      */
     @GetMapping("list")
     @ResponseBody

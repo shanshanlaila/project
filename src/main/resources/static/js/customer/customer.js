@@ -27,8 +27,8 @@ function query() {
     tableIns.reload({
         //传去接口的其他参数
         where: {
-            realName: $("#realName").val()
-            , phone: $("#phone").val()
+            like$real_name: $("#realName").val()
+            , like$phone: $("#phone").val()
         }
         , page: {
             curr: 1
