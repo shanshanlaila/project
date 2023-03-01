@@ -9,6 +9,7 @@ package com.imooc.project.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -46,4 +47,8 @@ public class BaseEntity {
      */
     @TableField(fill = FieldFill.UPDATE)
     private Long modifiedAccountId;
+
+    @TableLogic
+    @TableField("deleted")
+    private Integer isDeleted;
 }

@@ -2,13 +2,10 @@ package com.imooc.project.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.imooc.project.dto.LoginDTO;
 import com.imooc.project.entity.Account;
-import com.baomidou.mybatisplus.extension.service.IService;
-import com.imooc.project.entity.Resource;
-import org.apache.ibatis.annotations.Param;
+import com.imooc.project.mp.MyService;
 
 /**
  * <p>
@@ -18,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface AccountService extends IService<Account> {
+public interface AccountService extends MyService<Account> {
 
 
     /**

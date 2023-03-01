@@ -8,7 +8,7 @@ var tableIns = table.render({
         return {
             "code": res.code,
             "msg": res.msg,
-            "count": res.data.total,
+            "count": res.data.count,
             "data": res.data.records,
         };
     }
@@ -25,6 +25,7 @@ var tableIns = table.render({
 /*按条件查询*/
 function query() {
     tableIns.reload({
+        //传去接口的其他参数
         where: {
             realName: $("#realName").val()
             , phone: $("#phone").val()

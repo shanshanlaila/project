@@ -22,6 +22,9 @@ mybatis-plus:
   mapper-locations: classpath:mapper/project/*Mapper.xml
   #实体类别名
   type-aliases-package: com.imooc.project.entity
+  configuration:
+    #控制台打印sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #log
 logging:

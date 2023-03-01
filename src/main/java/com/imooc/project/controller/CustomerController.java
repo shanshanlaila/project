@@ -123,7 +123,9 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     @ResponseBody
     public R<Object> delete(@PathVariable long id) {//@RequestBody解析处理前端传来的json字符串数据
-        return ResultUtil.buildR(customerService.removeById(id));
+        Customer customer = new Customer();
+        customer.setCustomerId(id);
+        return ResultUtil.buildR(customerService.removeByIdWithFill(customer));
     }
 
     /**

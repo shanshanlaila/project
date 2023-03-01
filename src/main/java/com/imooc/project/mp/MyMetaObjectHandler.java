@@ -33,9 +33,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        //自动填充 创建时间
-        if (metaObject.hasSetter("createTime")) {
-            this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+        Object val = getFieldValByName("createTime", metaObject);
+        //判断用户是否自己设置的了值，自己设置了就不自动填充，没有就自动填充
+        if (val == null) {
+            //自动填充 创建时间
+            if (metaObject.hasSetter("createTime")) {
+                this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+            }
         }
 
         //自动填充 创建人
@@ -57,10 +61,11 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     public void updateFill(MetaObject metaObject) {
 
         //自动填充 修改时间
+        //判断当前实体类是否具有modifiedTime的set方法
         if (metaObject.hasSetter("modifiedTime")) {
             this.strictUpdateFill(metaObject, "modifiedTime", LocalDateTime.class, LocalDateTime.now());
         }
-
+        System.out.println("自动填充 修改时间");
         //自动填充 修改人
         if (metaObject.hasSetter("modifiedAccountId")) {
             Object account = Objects.requireNonNull(RequestContextHolder.getRequestAttributes()).getAttribute("account", RequestAttributes.SCOPE_SESSION);
@@ -69,5 +74,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
                 this.strictUpdateFill(metaObject, "modifiedAccountId", Long.class, accountId);
             }
         }
+        System.out.println("modifiedAccountId");
     }
 }

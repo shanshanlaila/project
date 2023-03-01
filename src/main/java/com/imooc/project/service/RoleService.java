@@ -1,7 +1,7 @@
 package com.imooc.project.service;
 
 import com.imooc.project.entity.Role;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.imooc.project.mp.MyService;
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface RoleService extends IService<Role> {
+public interface RoleService extends MyService<Role> {
 
     /**
      * 新增角色和角色所具有的资源

@@ -1,7 +1,7 @@
 package com.imooc.project.service;
 
 import com.imooc.project.entity.Resource;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.imooc.project.mp.MyService;
 import com.imooc.project.vo.ResourceVO;
 import com.imooc.project.vo.TreeVO;
 
@@ -15,7 +15,7 @@ import java.util.List;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface ResourceService extends IService<Resource> {
+public interface ResourceService extends MyService<Resource> {
 
     List<ResourceVO> listResourceByRoleId(Long roleId);
 

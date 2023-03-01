@@ -3,9 +3,9 @@ package com.imooc.project.mapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.imooc.project.entity.Resource;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.imooc.project.vo.ResourceVO;
 import com.imooc.project.vo.TreeVO;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,7 +18,8 @@ import java.util.List;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface ResourceMapper extends BaseMapper<Resource> {
+@Mapper
+public interface ResourceMapper extends MyMapper<Resource> {
 
     /**
      * 查询当前登录人的资源
@@ -29,5 +30,4 @@ public interface ResourceMapper extends BaseMapper<Resource> {
     List<ResourceVO> listResource(@Param(Constants.WRAPPER) QueryWrapper<Resource> wrapper);
 
     List<TreeVO> listResourceById(@Param(Constants.WRAPPER) QueryWrapper<Resource> wrapper, @Param("roleId") Long roleId);
-
 }

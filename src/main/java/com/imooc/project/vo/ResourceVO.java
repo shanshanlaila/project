@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author MI
  * @ClassName: ResourceVO
- * @Description: TODO
+ * @Description: 返回给前端侧边栏动态展示的ViewObject类
  * @date 2022/8/4 15:21
  */
 

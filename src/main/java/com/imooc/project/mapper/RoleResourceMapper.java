@@ -1,7 +1,7 @@
 package com.imooc.project.mapper;
 
 import com.imooc.project.entity.RoleResource;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface RoleResourceMapper extends BaseMapper<RoleResource> {
-
+@Mapper
+public interface RoleResourceMapper extends MyMapper<RoleResource> {
 }

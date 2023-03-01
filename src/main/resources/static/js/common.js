@@ -21,10 +21,10 @@ function openLayer(url, title) {
  * @param filter
  * @param type
  */
-function mySubmit(filter, type,func) {
+function mySubmit(filter, type, func) {
     layui.form.on('submit(' + filter + ')', function (data) {
 
-        if (typeof (func)!='undefined'){
+        if (typeof (func) != 'undefined') {
             func(data.field);
         }
 

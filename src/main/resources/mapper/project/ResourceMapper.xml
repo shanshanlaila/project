@@ -4,6 +4,7 @@
 
     <!--查询当前登陆人的资源-->
     <select id="listResource" resultType="com.imooc.project.vo.ResourceVO">
+        /*select 出的条件和resourceVo属性一致*/
         select re.resource_id, re.resource_name, re.url
         from project.resource re
                  inner join project.role_resource rr

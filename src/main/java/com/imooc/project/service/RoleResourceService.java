@@ -1,7 +1,7 @@
 package com.imooc.project.service;
 
 import com.imooc.project.entity.RoleResource;
-import com.baomidou.mybatisplus.extension.service.IService;
+import com.imooc.project.mp.MyService;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author shanshan
  * @since 2022-08-03
  */
-public interface RoleResourceService extends IService<RoleResource> {
+public interface RoleResourceService extends MyService<RoleResource> {
 
 }
